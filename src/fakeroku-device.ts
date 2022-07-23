@@ -9,6 +9,7 @@ export interface Device {
     SSDP_RESPONSE: Buffer,
     DESCXML: string,
     APPSXML: string
+    DEVXML: string
 }
 
 export interface Config {
@@ -142,8 +143,8 @@ module.exports = function (RED: Red) {
             case "/query/apps":
                 message = device.APPSXML;
                 break;
-            case "/query/device-info"
-                message = device.APPSXML;
+            case "/query/device-info":
+                message = device.DEVXML;
                 break;
             default:
                 break;
@@ -207,13 +208,90 @@ module.exports = function (RED: Red) {
 			<app id="46041">Sling TV</app>
 			<app id="50025">GooglePlay</app>
 			</apps>`;
+        let DEVXML = `
+        <device-info>
+            <udn>28000000-0000-1000-8000-788038f8240b</udn>
+            <serial-number>${UUID}</serial-number>
+            <device-id>S02DV00E9CMJ</device-id>
+            <advertising-id>ac818d56-c331-5082-925a-633246e079a6</advertising-id>
+            <vendor-name>Philips</vendor-name>
+            <model-name>55PFL4756/F7</model-name>
+            <model-number>C615X</model-number>
+            <model-region>US</model-region>
+            <is-tv>true</is-tv>
+            <is-stick>false</is-stick>
+            <screen-size>55</screen-size>
+            <panel-id>24</panel-id>
+            <ui-resolution>1080p</ui-resolution>
+            <tuner-type>ATSC</tuner-type>
+            <supports-ethernet>true</supports-ethernet>
+            <wifi-mac>78:80:38:f8:24:0b</wifi-mac>
+            <wifi-driver>realtek</wifi-driver>
+            <has-wifi-extender>false</has-wifi-extender>
+            <has-wifi-5G-support>true</has-wifi-5G-support>
+            <can-use-wifi-extender>true</can-use-wifi-extender>
+            <ethernet-mac>78:80:38:f8:39:63</ethernet-mac>
+            <network-type>wifi</network-type>
+            <network-name>Who5?</network-name>
+            <friendly-device-name>55" Philips Roku TV</friendly-device-name>
+            <friendly-model-name>Philips•Roku TV</friendly-model-name>
+            <default-device-name>Philips•Roku TV - X00000GE9CMJ</default-device-name>
+            <user-device-name>55" Philips Roku TV</user-device-name>
+            <user-device-location>Nunya</user-device-location>
+            <build-number>A2C.00E04193A</build-number>
+            <software-version>11.0.0</software-version>
+            <software-build>4193</software-build>
+            <secure-device>true</secure-device>
+            <language>en</language>
+            <country>US</country>
+            <locale>en_US</locale>
+            <time-zone-auto>true</time-zone-auto>
+            <time-zone>US/Eastern</time-zone>
+            <time-zone-name>United States/Eastern</time-zone-name>
+            <time-zone-tz>America/New_York</time-zone-tz>
+            <time-zone-offset>-240</time-zone-offset>
+            <clock-format>12-hour</clock-format>
+            <uptime>118080</uptime>
+            <power-mode>PowerOn</power-mode>
+            <supports-suspend>true</supports-suspend>
+            <supports-find-remote>false</supports-find-remote>
+            <supports-audio-guide>true</supports-audio-guide>
+            <supports-rva>true</supports-rva>
+            <developer-enabled>false</developer-enabled>
+            <keyed-developer-id/>
+            <search-enabled>true</search-enabled>
+            <search-channels-enabled>true</search-channels-enabled>
+            <voice-search-enabled>true</voice-search-enabled>
+            <notifications-enabled>true</notifications-enabled>
+            <notifications-first-use>true</notifications-first-use>
+            <supports-private-listening>true</supports-private-listening>
+            <supports-private-listening-dtv>true</supports-private-listening-dtv>
+            <supports-warm-standby>true</supports-warm-standby>
+            <headphones-connected>false</headphones-connected>
+            <supports-audio-settings>false</supports-audio-settings>
+            <expert-pq-enabled>1.0</expert-pq-enabled>
+            <supports-ecs-textedit>true</supports-ecs-textedit>
+            <supports-ecs-microphone>true</supports-ecs-microphone>
+            <supports-wake-on-wlan>true</supports-wake-on-wlan>
+            <supports-airplay>true</supports-airplay>
+            <has-play-on-roku>true</has-play-on-roku>
+            <has-mobile-screensaver>true</has-mobile-screensaver>
+            <support-url>www.philips.com/support</support-url>
+            <grandcentral-version>7.4.79</grandcentral-version>
+            <trc-version>3.0</trc-version>
+            <trc-channel-version>6.0.15</trc-channel-version>
+            <davinci-version>2.8.20</davinci-version>
+            <av-sync-calibration-enabled>1.0</av-sync-calibration-enabled>
+        </device-info>
+        `
 
         return {
             UUID: UUID,
             HTTP_PORT: HTTP_PORT,
             SSDP_RESPONSE: SSDP_RESPONSE,
             DESCXML: DESCXML,
-            APPSXML: APPSXML
+            APPSXML: APPSXML,
+            DEVXML: DEVXML
         };
     }
 
