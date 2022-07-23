@@ -142,6 +142,9 @@ module.exports = function (RED: Red) {
             case "/query/apps":
                 message = device.APPSXML;
                 break;
+            case "/query/device-info"
+                message = device.APPSXML;
+                break;
             default:
                 break;
         }
